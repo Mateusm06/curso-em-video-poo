@@ -1,4 +1,5 @@
 from abc import ABC
+from datetime import date
 
 class Pessoa(ABC):
     def __init__(self,nome, nascimento = None):
@@ -19,14 +20,14 @@ class Pessoa(ABC):
 
     @nascimento.setter
     def nascimento(self,ano):
-        if ano >= 1926 and ano <= 2026:
+        if ano >= 1926 and ano <= date.today().year:
             self._nascimento = ano
         else:
             raise ValueError(f"Ano {ano} é inválido")
 
     @property
     def idade(self):
-        idade = 2026 - self._nascimento
+        idade = date.today().year - self._nascimento
         return idade
 
     @idade.setter
